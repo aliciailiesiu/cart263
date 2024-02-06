@@ -8,29 +8,84 @@
 
 "use strict";
 
-const speechSynthesizer = new p5.Speech();
+//speech output
+const speechRecognizer = new p5.SpeechRec();
+let currentSpeech = `?`;
 
 function setup() {
     createCanvas(500,500);
-   
-    //synthesis settings
-    speechSynthesizer.setPitch(1);
-    speechSynthesizer.setRate(1);
-    speechSynthesizer.setVoice(`Google UK English Male`);
 
-    console.log(speechSynthesizer.listVoices());
-
+    speechRecognizer.onResult = handleSpeechInput;
+    speechRecognizer.start();
 }
 
 function draw() {
-    background(212,102,157);
-   
+    background(200,80,97);
+
+    textAlign(CENTER,CENTER);
+    textSize(24);
+    text(currentSpeech, width/2, height/2);
 }
 
-function mousePressed() {
-    //say something
-    speechSynthesizer.speak(`hello bitch`);
+function handleSpeechInput() {
+    currentSpeech = speechRecognizer.resultString;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//voice input
+// const speechSynthesizer = new p5.Speech();
+
+// function setup() {
+//     createCanvas(500,500);
+   
+//     //synthesis settings
+//     speechSynthesizer.setPitch(1);
+//     speechSynthesizer.setRate(1);
+//     speechSynthesizer.setVoice(`Google UK English Male`);
+
+//     console.log(speechSynthesizer.listVoices());
+
+// }
+
+// function draw() {
+//     background(212,102,157);
+   
+// }
+
+// function mousePressed() {
+//     //say something
+//     speechSynthesizer.speak(`hello bitch`);
+// }
 
 
 
