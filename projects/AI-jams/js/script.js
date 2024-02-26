@@ -10,7 +10,7 @@
 "use strict";
 
 // Current state of program
-let state = `loading`; // loading, running
+let state = `loading`; // loading, running, done, restart, stop
 // User's webcam
 let video;
 // The name of our model
@@ -20,11 +20,46 @@ let handpose;
 // The current set of predictions made by Handpose once it's running
 let predictions = [];
 
+//the list of things to draw
+let instructions = [
+    `draw a heart!`,
+    `draw a flower!`,
+    `draw a cat!`,
+    `draw a cupcake!`
+];
+
+//stores the current instruction we want to display, it starts at zero because it is the first index of the array
+let currentInstruction = instructions[0];
+
+//background color
+let bgColor = {
+    r: 252,
+    g: 252,
+    b: 245
+};
+
+let pointerX = undefined;
+let pointerY = undefined;
+
+// let colr, colb, colg;
+// let canvas2;
+// let prevtop = null;
+// let prevleft = null;
+// let leftArr = [];
+// let topArr = [];
+// let leftAvg, topAvg;
+// let pointerX, pointerY, middle, ring;
+// let thumbX, thumbY, middleX, ringX;
+// let pinchDistance;
+// let fPainting = false;
+
 /**
 Starts the webcam and the Handpose
 */
 function setup() {
-  createCanvas(640, 480);
+  createCanvas(600, 600);
+
+//   canvas2 = createGraphics(width, height);
 
   // Start webcam and hide the resulting HTML element
   video = createCapture(VIDEO);
@@ -49,21 +84,117 @@ function setup() {
 Handles the two states of the program: loading, running
 */
 function draw() {
-    background(255);
+    background(252, 252, 245);
 
   if (state === `loading`) {
     loading();
   }
   else if (state === `running`) {
     running();
+    instructionSet();
+
   }
-}
+
+//   colr = random(0, 255);
+//   colb = random(0, 255);
+//   colg = random(0, 255);
+
+  
+//   for (let i = 0; i < predictions.length; i++) {
+//     const prediction = predictions[i];
+//     canvas2.strokeWeight(10);
+//     for (let j = 0; j < prediction.landmarks.length; j++) {
+//       const keypoint = prediction.landmarks[j];
+//       fill(0, 255, 0);
+//       noStroke();
+      
+//       pointerX = prediction.landmarks[8][0];
+//       pointerY = prediction.landmarks[8][1];
+    
+//       thumbX = prediction.landmarks[4][0];
+//       thumbY = prediction.landmarks[4][1];
+
+
+//       middleX = prediction.landmarks[14][0];
+//       middle = prediction.landmarks[14][1];
+
+//       ringX = prediction.landmarks[16][0];
+//       ring = prediction.landmarks[16][1];
+    
+//       pinchDistance = dist(thumbX,thumbY,pointerX,pointerY);
+//     }
+
+
+
+  
+//   //Draw a line when only index is pointing. Show we're ready by making the dot red
+//   if (middle < ring) {
+//     fPainting = true;
+//     fill(255,0,0);
+//     //ready to finger paint
+//     ellipse(pointerX, pointerY, 10, 10);
+//     if (pointerX < width) {
+//       getaverages();
+//       canvas2.stroke(colr, colg, colb);
+//       if (leftArr.length > 2 && prevleft>0) {
+//         canvas2.line(prevleft, prevtop, leftAvg, topAvg);
+//         if (prevleft > 0) {
+//           prevleft = leftAvg;
+//           prevtop = topAvg;
+//         } else {
+//             prevleft = pointerX;
+//             prevtop = pointerY;
+//         }
+//       }
+//     } 
+//   }
+
+//   else { //index is not the only finger out
+//     //If the hand is extended, don't draw
+//     fPainting = false;
+//     fill(255);
+//     ellipse(pointerX, pointerY, 10, 10);
+//     leftArr.length = 0;
+//     topArr.length = 0;
+//     leftAvg = 0;
+//     topAvg = 0;
+//     prevleft = pointerX;
+//     prevtop = pointerY;
+//   }
+//   }
+
+
+// function getaverages() {
+
+// if (leftArr.length > 3) {
+//   leftArr.splice(0, 1);
+//   topArr.splice(0, 1);
+// }
+
+// if (pointerX > 0 ) {
+//   leftArr.push(pointerX);
+//   topArr.push(pointerY);
+// }
+// let leftSum = 0;
+// let topSum = 0;
+// for (let i = 0; i < leftArr.length; i++) {
+//   leftSum = leftSum + leftArr[i];
+//   topSum = topSum + topArr[i];
+// }
+// leftAvg = leftSum / leftArr.length;
+// topAvg = topSum / topArr.length;
+// // console.log ("leftSum: " + leftSum +  " " + leftArr.length);
+
+
+
+// }
+// }
 
 /**
 Displays a simple loading screen with the loading model's name
 */
 function loading() {
-  background(255);
+  background(bgColor.r, bgColor.g, bgColor.b);
 
   push();
   textSize(32);
@@ -99,14 +230,51 @@ function highlightHand(hand) {
   let indexY = index[1];
   push();
   fill(255, 255, 0);
-  noStroke();
-  ellipse(indexX, indexY, 50);
+  ellipse(indexX, indexY, pmouseX, pmouseY);
   pop();
+
+  
+}
+}
+            
+//     //A function to draw ellipses over the detected keypoints
+//     // function drawKeypoints() {
+//     //   for (let i = 0; i < predictions.length; i += 1) {
+//         // const prediction = predictions[i];
+//     //     for (let j = 0; j < prediction.landmarks.length; j += 1) {
+//         //   const keypoint = predictions.landmarks[j];
+//           let indexX = index[0];
+//             let indexY = index[1];
+//           fill(0, 255, 0);
+//           noStroke();
+//             ellipse(indexX, indexY, 10, 10);
+         
+//         }
+//     // }
+            
+  
+// // }
+
+
+
+//displays the current instruction
+function instructionSet() {
+    //get the element of array in current index
+    
+    //display instruction
+    push();
+    textAlign(CENTER, CENTER);
+    textSize(32);
+    fill(0);
+    text(currentInstruction, width/2, height/6 )
+    pop();
 }
 
-
-
-
+// mousePressed() moves to the next line in the soliloquy unless we've reached the end
+function mousePressed() {
+    currentInstruction = random(instructions);
+}
+    
 
 
 
