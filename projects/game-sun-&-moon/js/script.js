@@ -1,9 +1,8 @@
 /**
-Title of Project
-Author Name
+Finding the one piece
+Alicia Iliesiu
 
-This is a template. You must fill in the title,
-author, and this description to match your project!
+the game is about a pirate trying to find a treasure , there are bombs he needs to avoid and because of his pirate nature he will of course find and drink some alcohol, when he drinks he gets pretty drunk and it gets harder to control him 
 */
 
 "use strict";
@@ -18,9 +17,9 @@ let config = {
     physics: {
       default: 'arcade',
     },
-    backgroundColor: 'rgb(255,255,0)',
-    scene: [Boot,Play]
+    backgroundColor: 'rgb(125, 110, 25)',
+    scene: [Boot,Play,Lose,Win]
   };
   
-  // Here we actually create the game using this configuration!
+  //game configuartion
   let game = new Phaser.Game(config);

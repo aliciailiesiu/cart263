@@ -7,6 +7,7 @@ class Boot extends Phaser.Scene {
     }
 
   preload() {
+    //loading my pixel art in the game
     this.load.image(`treasure`, `assets/images/treasure.png`);
     this.load.image(`whiskey`, `assets/images/whiskey.png`);
     this.load.image(`pirate`, `assets/images/pirate.png`);
@@ -20,16 +21,15 @@ class Boot extends Phaser.Scene {
   }
   
     create() {
-        // NOTE: Adding a loading message to the scene on creation
-    let loadingTextStyle = {
-        fontFamily: "sans-serif",
-        fontSize: "40px",
-        fill: "#ffffff",
-        align: "center"
-      };
-      let loadingString = `Loading...`;
-      this.loadingText = this.add.text(100, 100, loadingString, loadingTextStyle);
-  
+        // Adding a loading message to the scene on creation
+        let loadingTextStyle = {
+            fontFamily: "sans-serif",
+            fontSize: "40px",
+            fill: "#ffffff",
+            align: "center"
+        };
+        let loadingString = `Loading...`;
+        this.loadingText = this.add.text(100, 100, loadingString, loadingTextStyle);
     }
   
     update() {
