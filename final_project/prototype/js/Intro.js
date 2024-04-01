@@ -1,0 +1,1 @@
+//for the sake of the prototype I wont focus on the intro yet so the simulation will start directly with romania
