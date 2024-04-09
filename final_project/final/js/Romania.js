@@ -9,11 +9,12 @@ class Romania extends Phaser.Scene {
     create() {
   
         //making the sprites
+        this.createMe();
         this.createCrowd_1();
         this.createCrowd_2();
         this.createCrowd_3();
         this.createCrowd_4();
-        this.createMe();
+        
   
         //creating keybord input
         this.cursors = this.input.keyboard.createCursorKeys();
@@ -24,9 +25,15 @@ class Romania extends Phaser.Scene {
         this.crowds_1 = this.physics.add.group({
         // All obstacles use this key
         key: `ro_1`,
-        // immovable: true,
         // Create 80 obstacles
-        quantity: 800,
+        quantity: 400,
+        collideWorldBounds: true,
+        // How much to they bounce when they hit something?
+        bounceX: 0.5,
+        bounceY: 0.5,
+        // How quickly do they slow down while moving?
+        dragX: 50,
+        dragY: 50
         });
   
         this.crowds_1.children.each(function (crowd_1) {
@@ -36,8 +43,10 @@ class Romania extends Phaser.Scene {
         crowd_1.setPosition(x, y);
         }, this);
   
-        // //making obstacle collide with pirate
-        // this.physics.add.collider(this.pirate, this.obstacles);
+        // Add colliders between the avatar and the happiness, and the happiness and itself
+        // so that we get lots of fun bouncy physics for free!
+        this.physics.add.collider(this.me, this.crowds_1);
+        this.physics.add.collider(this.crowds_1, this.crowds_1);
     }
   
     createCrowd_2() {
@@ -47,7 +56,14 @@ class Romania extends Phaser.Scene {
         key: `ro_2`,
         // immovable: true,
         // Create 80 obstacles
-        quantity: 800,
+        quantity: 400,
+        collideWorldBounds: true,
+        // How much to they bounce when they hit something?
+        bounceX: 0.5,
+        bounceY: 0.5,
+        // How quickly do they slow down while moving?
+        dragX: 50,
+        dragY: 50
         });
   
         this.crowds_2.children.each(function (crowd_2) {
@@ -57,8 +73,10 @@ class Romania extends Phaser.Scene {
         crowd_2.setPosition(x, y);
         }, this);
   
-        // //making obstacle collide with pirate
-        // this.physics.add.collider(this.pirate, this.obstacles);
+        // Add colliders between the avatar and the happiness, and the happiness and itself
+        // so that we get lots of fun bouncy physics for free!
+        this.physics.add.collider(this.me, this.crowds_2);
+        this.physics.add.collider(this.crowds_2, this.crowds_2);
     }
   
     createCrowd_3() {
@@ -68,7 +86,14 @@ class Romania extends Phaser.Scene {
         key: `ro_3`,
         // immovable: true,
         // Create 80 obstacles
-        quantity: 800,
+        quantity: 400,
+        collideWorldBounds: true,
+        // How much to they bounce when they hit something?
+        bounceX: 0.5,
+        bounceY: 0.5,
+        // How quickly do they slow down while moving?
+        dragX: 50,
+        dragY: 50
         });
   
         this.crowds_3.children.each(function (crowd_3) {
@@ -78,8 +103,10 @@ class Romania extends Phaser.Scene {
         crowd_3.setPosition(x, y);
         }, this);
   
-        // //making obstacle collide with pirate
-        // this.physics.add.collider(this.pirate, this.obstacles);
+        // Add colliders between the avatar and the happiness, and the happiness and itself
+        // so that we get lots of fun bouncy physics for free!
+        this.physics.add.collider(this.me, this.crowds_3);
+        this.physics.add.collider(this.crowds_3, this.crowds_3);
     }
   
     createCrowd_4() {
@@ -89,7 +116,14 @@ class Romania extends Phaser.Scene {
         key: `ro_4`,
         // immovable: true,
         // Create 80 obstacles
-        quantity: 800,
+        quantity: 400,
+        collideWorldBounds: true,
+        // How much to they bounce when they hit something?
+        bounceX: 0.5,
+        bounceY: 0.5,
+        // How quickly do they slow down while moving?
+        dragX: 50,
+        dragY: 50
         });
   
         this.crowds_4.children.each(function (crowd_4) {
@@ -99,18 +133,21 @@ class Romania extends Phaser.Scene {
         crowd_4.setPosition(x, y);
         }, this);
   
-        // //making obstacle collide with pirate
-        // this.physics.add.collider(this.pirate, this.obstacles);
+        // Add colliders between the avatar and the happiness, and the happiness and itself
+        // so that we get lots of fun bouncy physics for free!
+        this.physics.add.collider(this.me, this.crowds_4);
+        this.physics.add.collider(this.crowds_4, this.crowds_4);
     }
     createMe() {
         //creating the pirate 
-        this.me = this.physics.add.sprite(5, 400, `ro_me`);
+        this.me = this.physics.add.sprite(5, 400, `me_avoid`);
         //I can't get out of the screen
         this.me.setCollideWorldBounds(true);
     }
   
     update() {
         this.handleInput();
+
     }
   
     handleInput() {
