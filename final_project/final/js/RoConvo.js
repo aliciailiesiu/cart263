@@ -4,11 +4,14 @@ class RoConvo extends Phaser.Scene {
       super({
         key: `roConvo`
       });
+
+      this.speechSynthesizer = new p5.Speech();
+      console.log(this.speechSynthesizer.listVoices());
+
     }
 
     
     create() {
-        console.log(speechSynthesizer.listVoices());
         
     }
 }
