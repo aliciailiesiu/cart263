@@ -10,6 +10,8 @@ class Romania extends Phaser.Scene {
   
         //making the sprites
         this.createMe();
+        this.createFlag();
+        this.createConversation();
         this.createCrowd_1();
         this.createCrowd_2();
         this.createCrowd_3();
@@ -138,11 +140,32 @@ class Romania extends Phaser.Scene {
         this.physics.add.collider(this.me, this.crowds_4);
         this.physics.add.collider(this.crowds_4, this.crowds_4);
     }
+
+
+    createFlag() {
+        this.can_flag = this.physics.add.sprite(550, 200, `can_flag`);
+        this.physics.add.overlap(this.me, this.can_flag, this.canada, null, this);
+    }
+
+     //scene changes to canada when flag is touched
+     canada(me, flag) {
+        this.scene.start("canada");
+    }
+
     createMe() {
-        //creating the pirate 
+        //creating me
         this.me = this.physics.add.sprite(5, 400, `me_avoid`);
         //I can't get out of the screen
         this.me.setCollideWorldBounds(true);
+    }
+
+    createConversation() {
+        this.conversation = this.physics.add.sprite(250, 450, `conversation`);
+        this.physics.add.overlap(this.me, this.conversation, this.convo, null, this);
+    }
+  
+    convo() {
+        this.scene.start("roConvo");
     }
   
     update() {

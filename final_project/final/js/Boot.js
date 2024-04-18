@@ -14,10 +14,12 @@ class Boot extends Phaser.Scene {
     this.load.image(`ro_4`, `assets/images/ro_4.png`);
     // this.load.image(`ro_me`, `assets/images/ro_me.png`);
     this.load.image(`me_avoid`, `assets/images/me_avoid.png`);
+    this.load.image(`can_flag`, `assets/images/can_flag.png`);
+    this.load.image(`ro_flag`, `assets/images/ro_flag.png`);
+    this.load.image(`conversation`, `assets/images/conversation.png`);
 
 
     this.load.on(`complete`, () => {
-      // for the prototype we will start with the scene ro since can will be very similar but in real simulation it will start with an intro
       this.scene.start(`intro`);
     });
   }
