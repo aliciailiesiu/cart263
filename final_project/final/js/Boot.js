@@ -18,7 +18,7 @@ class Boot extends Phaser.Scene {
 
     this.load.on(`complete`, () => {
       // for the prototype we will start with the scene ro since can will be very similar but in real simulation it will start with an intro
-      this.scene.start(`romania`);
+      this.scene.start(`intro`);
     });
   }
   
