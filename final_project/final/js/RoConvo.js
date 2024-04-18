@@ -1,8 +1,14 @@
-class Canada extends Phaser.Scene {
+class RoConvo extends Phaser.Scene {
 
     constructor() {
       super({
-        key: `canada`
+        key: `roConvo`
       });
+    }
+
+    
+    create() {
+        console.log(speechSynthesizer.listVoices());
+        
     }
 }
