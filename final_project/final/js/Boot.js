@@ -12,11 +12,12 @@ class Boot extends Phaser.Scene {
     this.load.image(`ro_2`, `assets/images/ro_2.png`);
     this.load.image(`ro_3`, `assets/images/ro_3.png`);
     this.load.image(`ro_4`, `assets/images/ro_4.png`);
-    // this.load.image(`ro_me`, `assets/images/ro_me.png`);
+    this.load.image(`ro_me`, `assets/images/ro_me.png`);
     this.load.image(`me_avoid`, `assets/images/me_avoid.png`);
     this.load.image(`can_flag`, `assets/images/can_flag.png`);
     this.load.image(`ro_flag`, `assets/images/ro_flag.png`);
     this.load.image(`conversation`, `assets/images/conversation.png`);
+    this.load.image(`money`, `assets/images/money.png`);
 
 
     this.load.on(`complete`, () => {

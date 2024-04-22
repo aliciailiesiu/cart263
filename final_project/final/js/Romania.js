@@ -11,6 +11,7 @@ class Romania extends Phaser.Scene {
         //making the sprites
         this.createMe();
         this.createFlag();
+        this.createMoney();
         this.createConversation();
         this.createCrowd_1();
         this.createCrowd_2();
@@ -29,7 +30,7 @@ class Romania extends Phaser.Scene {
         key: `ro_1`,
         // Create 80 obstacles
         quantity: 400,
-        collideWorldBounds: true,
+        collideWorldBounds: false,
         // How much to they bounce when they hit something?
         bounceX: 0.5,
         bounceY: 0.5,
@@ -59,7 +60,7 @@ class Romania extends Phaser.Scene {
         // immovable: true,
         // Create 80 obstacles
         quantity: 400,
-        collideWorldBounds: true,
+        collideWorldBounds: false,
         // How much to they bounce when they hit something?
         bounceX: 0.5,
         bounceY: 0.5,
@@ -89,7 +90,7 @@ class Romania extends Phaser.Scene {
         // immovable: true,
         // Create 80 obstacles
         quantity: 400,
-        collideWorldBounds: true,
+        collideWorldBounds: false,
         // How much to they bounce when they hit something?
         bounceX: 0.5,
         bounceY: 0.5,
@@ -119,7 +120,7 @@ class Romania extends Phaser.Scene {
         // immovable: true,
         // Create 80 obstacles
         quantity: 400,
-        collideWorldBounds: true,
+        collideWorldBounds: false,
         // How much to they bounce when they hit something?
         bounceX: 0.5,
         bounceY: 0.5,
@@ -168,6 +169,15 @@ class Romania extends Phaser.Scene {
         this.scene.start("roConvo");
     }
   
+    createMoney() {
+        this.money = this.physics.add.sprite(400, 350, `money`);
+        this.physics.add.overlap(this.me, this.money, this.cash, null, this);
+    }
+
+    cash() {
+        this.scene.start("roMoney");
+    }
+
     update() {
         this.handleInput();
 

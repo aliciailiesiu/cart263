@@ -18,7 +18,7 @@ let config = {
       default: 'arcade',
     },
     backgroundColor: 'rgb(255,255,255)',
-    scene: [Boot,Romania, Canada, Intro, RoConvo]
+    scene: [Boot,Romania, Canada, Intro, RoConvo, RoMoney]
   };
   
   //game configuartion
