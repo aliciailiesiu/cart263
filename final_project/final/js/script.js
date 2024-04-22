@@ -1,8 +1,8 @@
 /**
-I am from nowhere
+where do I belong
 Alicia Iliesiu
 
-this is a prototype of my final project (see project proposal)
+this is meant to mimic a funny and light experience about the dichotomy of being a child of immigrants, I am born in Canada, but I relate more as a Romanian. When I am here people make me feel like a stranger and vice versa when I am in Romania, which made me question where do I really belong if both don't recognize me as a part of them? This leads to funny conversations and stereotypes about both countries, I made it playful and fun.
 */
 
 "use strict";
@@ -18,7 +18,7 @@ let config = {
       default: 'arcade',
     },
     backgroundColor: 'rgb(255,255,255)',
-    scene: [Boot,Romania, Canada, Intro, RoConvo, RoMoney]
+    scene: [Boot,Romania, Canada, Intro, RoConvo, RoMoney, CanConvo]
   };
   
   //game configuartion

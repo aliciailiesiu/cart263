@@ -25,6 +25,7 @@ class Boot extends Phaser.Scene {
     this.load.image(`ro_flag`, `assets/images/ro_flag.png`);
     this.load.image(`conversation`, `assets/images/conversation.png`);
     this.load.image(`money`, `assets/images/money.png`);
+    this.load.image(`snowflake`, `assets/images/snowflake.png`);
   
 
 
@@ -47,6 +48,5 @@ class Boot extends Phaser.Scene {
     }
   
     update() {
-  
-    }
   }
+}

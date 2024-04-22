@@ -1,17 +1,17 @@
 class RoMoney extends Phaser.Scene {
 
     constructor() {
-      super({
-        key: `roMoney`
+        super({
+            key: `roMoney`
       });
     }
 
     create() {
+        //making the sprites
         this.createMe();
         this.createMoney();
         this.createButton();
         this.createText();
-       
     }
 
     createText() {
@@ -27,17 +27,18 @@ class RoMoney extends Phaser.Scene {
                             'to make the stereotypes true`;
         this.loadingText = this.add.text(20, 100, loadingString, loadingTextStyle);
     }
-    createMoney() {
-        //creating the crowd 1
-        this.moneys = this.physics.add.group({
-        // All obstacles use this key
-        key: `money`,
-        // Create money
-        quantity: 800,
-        collideWorldBounds: true,
 
+    //making the money
+    createMoney() {
+        //creating the money
+        this.moneys = this.physics.add.group({
+            key: `money`,
+            // Create money
+            quantity: 800,
+            collideWorldBounds: true,
         });
   
+        //random placement
         this.moneys.children.each(function (money) {
         let x = Phaser.Math.Between(0, this.sys.canvas.width);
         let y = Phaser.Math.Between(0, this.sys.canvas.height);
@@ -45,22 +46,26 @@ class RoMoney extends Phaser.Scene {
         money.setPosition(x, y);
         }, this);
 
+        //overlap of me and the money
         this.physics.add.overlap(this.mee, this.moneys, this.collectMoney, null, this);
 
     }
 
+    //money disappears
     collectMoney(mee, money) {
         money.destroy();
     }
 
 
+    //making me 
     createMe() {
         //creating me
         this.mee = this.physics.add.sprite(5, 400, `ro_me`);
         //I can't get out of the screen
         this.mee.setCollideWorldBounds(true);
-}
+    }
 
+    //creating go back button
     createButton() {
         //creating keybord input
         this.cursors = this.input.keyboard.createCursorKeys();
@@ -76,46 +81,45 @@ class RoMoney extends Phaser.Scene {
  
         button.setInteractive({ useHandCursor: true });
  
+        //when mouse is over the button color is more pale
         button.on('pointerover', () => {
              button.setBackgroundColor('#FEC1E2');
         });
- 
+        //when mouse is not over button color is more dark
         button.on('pointerout', () => {
              button.setBackgroundColor('#EA72B2');
         });
- 
+        //scene changes to romania when player chooses the ro button
         button.on('pointerdown', () => {
              this.scene.start(`romania`);
         });
     }
 
-update() {
-    this.handleInput();
+    update() {
+        this.handleInput();
+    }
 
-}
-
-handleInput() {
-    // EXAMPLE: https://phaser.io/examples/v3/view/input/keyboard/cursor-keys
-    if (this.cursors.left.isDown) {
-    this.mee.setVelocityX(-300);
+    handleInput() {
+        // EXAMPLE: https://phaser.io/examples/v3/view/input/keyboard/cursor-keys
+        if (this.cursors.left.isDown) {
+            this.mee.setVelocityX(-300);
+        }
+        else if (this.cursors.right.isDown) {
+            this.mee.setVelocityX(300);
+        }
+        else {
+            // If neither left or right are pressed, stop moving on x
+            this.mee.setVelocityX(0);
+        }
+        if (this.cursors.up.isDown) {
+            this.mee.setVelocityY(-300);
+        }
+        else if (this.cursors.down.isDown) {
+            this.mee.setVelocityY(300);
+        }
+        else {
+            // If neither up or down are pressed, stop moving on y
+            this.mee.setVelocityY(0);
+        }
     }
-    else if (this.cursors.right.isDown) {
-    this.mee.setVelocityX(300);
-    }
-    else {
-    // If neither left or right are pressed, stop moving on x
-    this.mee.setVelocityX(0);
-    }
-    if (this.cursors.up.isDown) {
-    this.mee.setVelocityY(-300);
-    }
-    else if (this.cursors.down.isDown) {
-    this.mee.setVelocityY(300);
-    }
-    else {
-    // If neither up or down are pressed, stop moving on y
-    this.mee.setVelocityY(0);
-    }
-}
-
 }

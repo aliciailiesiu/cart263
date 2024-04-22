@@ -6,29 +6,13 @@ class Intro extends Phaser.Scene {
         });
     }
 
+    create () {
+       this.createButtonRo();
+       this.createButtonCan();
+    
+    }
 
-
-    // create ()
-    // {
-    //     let myArray = ["something", "yes hahah", "weee arrays"];
-    //     let index = 0;
-    //     const title = this.add.text(100, 200, 'Static Text Object', { fontFamily: 'Arial', fontSize: 64, color: '#00ff00' });
-
-    //     this.input.on('pointerdown', () =>
-    //     {
-    //         index++;
-    //         //  Or use the setText method if you need method chaining:
-    //         title.setText(myArray[index]);
-
-    //         if (index >= 3) {
-    //             this.scene.start(`romania`);
-    //         }
-    //     });
-       
-    // }
-
-        create ()
-    {
+    createButtonRo() {
         //button code from: https://labs.phaser.io/edit.html?src=src\game%20objects\text\simple%20text%20button.js
         let buttonRo = this.add.text(400, 200, 'Romania', {
             fontFamily: 'Arial',
@@ -41,18 +25,23 @@ class Intro extends Phaser.Scene {
 
         buttonRo.setInteractive({ useHandCursor: true });
 
+        //when mouse is over the button color is more pale
         buttonRo.on('pointerover', () => {
             buttonRo.setBackgroundColor('#FEC1E2');
         });
 
+        //when mouse is not over button color is more dark
         buttonRo.on('pointerout', () => {
             buttonRo.setBackgroundColor('#EA72B2');
         });
 
+        //scene changes to romania when player chooses the ro button
         buttonRo.on('pointerdown', () => {
             this.scene.start(`romania`);
         });
+       }
         
+    createButtonCan() {
         let buttonCan = this.add.text(100, 200, 'Canada', {
             fontFamily: 'Arial',
             fontSize: '32px',
@@ -64,19 +53,24 @@ class Intro extends Phaser.Scene {
 
         buttonCan.setInteractive({ useHandCursor: true });
 
+        //when mouse is over the button color is more pale
         buttonCan.on('pointerover', () => {
             buttonCan.setBackgroundColor('#FEC1E2');
         });
 
+        //when mouse is not over button color is more dark
         buttonCan.on('pointerout', () => {
             buttonCan.setBackgroundColor('#EA72B2');
         });
 
+        //scene changes to canada when player chooses the ro button
         buttonCan.on('pointerdown', () => {
             this.scene.start(`canada`);
         });
 
-    }
+       }
+        
+    
 
 
 
