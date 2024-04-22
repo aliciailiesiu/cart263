@@ -16,6 +16,7 @@ function setup() {
     createCanvas(500,500);
 
     speechRecognizer.onResult = handleSpeechInput;
+    speechRecognizer.continuous = true;
     speechRecognizer.start();
 }
 
